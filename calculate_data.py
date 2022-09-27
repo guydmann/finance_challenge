@@ -22,15 +22,15 @@ def calculate_data():
                                         (close_prices['GOOG'] * weights['GOOG']) + \
                                         (close_prices['META'] * weights['META']) + \
                                         (close_prices['NFLX'] * weights['NFLX'])
-    close_prices["ONE_EACH_DLY_RTN"] = close_prices["ONE_EACH"].pct_change(1)
+    close_prices["Portfolio A Daily Returns"] = close_prices["ONE_EACH"].pct_change(1)
     one_each_monthly_return = close_prices["ONE_EACH"].pct_change(20)
-    close_prices["EQUAL_START_VALUE_DLY_RTN"] = close_prices["EQUAL_START_VALUE"].pct_change(1)
+    close_prices["Portfolio B Daily Returns"] = close_prices["EQUAL_START_VALUE"].pct_change(1)
     equal_start_value_monthly_return = close_prices["EQUAL_START_VALUE"].pct_change(20)
-    print(close_prices[['Date', "ONE_EACH_DLY_RTN", "EQUAL_START_VALUE_DLY_RTN"]])
-    print("one each monthly return: {mn_return}".format(mn_return=one_each_monthly_return[20]))
-    print("equal start value monthly return: {mn_return}".format(mn_return=equal_start_value_monthly_return[20]))
+    print(close_prices[['Date', "Portfolio A Daily Returns", "Portfolio B Daily Returns"]])
+    print("Portfolio A Monthly Return for July: {mn_return}".format(mn_return=one_each_monthly_return[20]))
+    print("Portfolio B Monthly Return for July: {mn_return}".format(mn_return=equal_start_value_monthly_return[20]))
 
-    correlation = close_prices['ONE_EACH_DLY_RTN'].corr(close_prices['EQUAL_START_VALUE_DLY_RTN'])
+    correlation = close_prices['Portfolio A Daily Returns'].corr(close_prices['Portfolio B Daily Returns'])
     print("correlation: {correlation}".format(correlation=correlation))
 
 
